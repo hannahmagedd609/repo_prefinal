@@ -14,7 +14,7 @@ jobs:
       - name: Set up Qt
         uses: jurplel/setup-qt@v1
         with:
-          version: '13.0.0'
+          version: '6.7.1'
 
       - name: Configure and build
         run: |
