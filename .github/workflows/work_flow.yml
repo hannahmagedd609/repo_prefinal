@@ -1,36 +1,29 @@
-name: CI/CD Pipeline
-
+name: Build, Test, and Deploy
 on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
-
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Set up Qt
-      uses: qmcgaw/qt-installer-action@v2
-      with:
-        version: '13.0.0'
-        components: 'qtbase qttools'
-        target-dir: /opt/Qt
+      - name: Set up Qt
+        uses: jurplel/setup-qt@v1
+        with:
+          version: '13.0.0'
 
-    - name: Configure and build
-      run: |
-        qmake -v
-        qmake CONFIG+=debug
-        make
+      - name: Configure and build
+        run: |
+          qmake -makefile
+          make
 
-    - name: Run unit tests
-      run: ./tests/test_game  # Replace with your actual test command
+      - name: Run tests
+        run: |
+          # Add commands to run tests here
 
   deploy:
     runs-on: ubuntu-latest
@@ -38,8 +31,10 @@ jobs:
     if: success()
 
     steps:
-    - name: Deploy to Production
-      run: |
-        echo "Deploying Tic Tac Toe game..."
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./path/to/deploy
 
 
