@@ -27,20 +27,21 @@ jobs:
       - name: Set up Qt
         uses: jurplel/install-qt-action@v2
         with:
-          version: '6.7.0'
+          version: '6.7.1'
           host: 'windows'
           target: 'desktop'
           arch: 'win64_msvc2019_64'
 
       - name: Set up environment variables
         run: |
-          echo :C:\Qt\Tools\QtCreator\bin
+          echo C:\Qt\6.7.1\msvc2019_64\bin >> $GITHUB_ENV
+          echo C:\Qt\Tools\QtCreator\bin >> $GITHUB_ENV
 
       - name: Build project
         run: |
           mkdir build
           cd build
-          qmake qmakewithsounds.pro  # Replace with your actual .pro file name
+          qmake ../qmakewithsounds.pro  # Ensure the path to the .pro file is correct
           nmake
 
       - name: Upload build artifacts
@@ -63,5 +64,4 @@ jobs:
         with:
           name: build-artifacts
           path: build/
-
 
