@@ -13,32 +13,33 @@ jobs:
     runs-on: ubuntu-latest  # Choose an appropriate runner based on your needs
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Set up Qt environment
-      uses: jurplel/setup-qt@v2
-      with:
-        qt-version: '5.x'  # Replace with your Qt version (e.g., '6.7.1')
-        qmake-path: 'qmake'  # Ensure 'qmake' is in your PATH
+      - name: Set up Qt environment
+        uses: jurplel/setup-qt@v2
+        with:
+          qt-version: '6.7.1'  # Replace with your Qt version (e.g., '5.15.2')
+          qmake-path: 'qmake'  # Ensure 'qmake' is in your PATH
 
-    - name: Install build dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y build-essential  # Install necessary build tools
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential  # Install necessary build tools
 
-    - name: Configure and build
-      run: |
-        qmake -r  # Run QMake recursively to generate Makefiles
-        make  # Build the project
+      - name: Configure and build
+        run: |
+          qmake -r  # Run QMake recursively to generate Makefiles
+          make  # Build the project
 
-    - name: Run tests (if applicable)
-      run: |
-        # Add commands here to run your tests, if any
+      - name: Run tests (if applicable)
+        run: |
+          # Add commands here to run your tests, if any
 
-    - name: Deploy (example: copy binaries)
-      if: success()  # Example condition, adjust as needed
-      run: |
-        # Add deployment steps here, such as copying binaries to a server or packaging for distribution
+      - name: Deploy (example: copy binaries)
+        if: success()  # Example condition, adjust as needed
+        run: |
+          # Add deployment steps here, such as copying binaries to a server or packaging for distribution
+          echo "Deployment step placeholder"
 
 
