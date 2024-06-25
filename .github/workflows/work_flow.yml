@@ -1,4 +1,4 @@
-name: CI/CD
+name: CI/CD Pipeline
 
 on: push
 
@@ -41,11 +41,6 @@ jobs:
             echo Qt installation verified.
           )
 
-      - name: Set up environment variables
-        run: |
-          echo C:\Qt\6.7.1\msvc2019_64\bin >> $GITHUB_ENV
-          echo C:\Qt\Tools\QtCreator\bin >> $GITHUB_ENV
-
       - name: Add Qt to PATH
         run: echo C:\Qt\6.7.1\msvc2019_64\bin >> $GITHUB_PATH
 
@@ -57,7 +52,7 @@ jobs:
           mkdir build
           cd build
           qmake ../qmakewithsounds.pro -d  # Ensure the path to the .pro file is correct
-          nmake /f Makefile.Debug VERBOSE=1
+          nmake /f Makefile VERBOSE=1
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v2
