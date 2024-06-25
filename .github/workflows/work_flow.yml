@@ -1,4 +1,4 @@
-name: CI/CD Pipeline for Qt with QMake
+name: CI Pipeline for Qt with QMake
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
       - name: Set up Qt environment
         uses: jurplel/setup-qt@v2
         with:
-          qt-version: '6.7.1'  # Replace with your Qt version (e.g., '5.15.2')
+          qt-version: '5.x'  # Replace with your Qt version (e.g., '5.15.2')
           qmake-path: 'qmake'  # Ensure 'qmake' is in your PATH
 
       - name: Install build dependencies
@@ -35,11 +35,5 @@ jobs:
       - name: Run tests (if applicable)
         run: |
           # Add commands here to run your tests, if any
-
-      - name: Deploy (example: copy binaries)
-        if: success()  # Example condition, adjust as needed
-        run: |
-          # Add deployment steps here, such as copying binaries to a server or packaging for distribution
-          echo "Deployment step placeholder"
 
 
