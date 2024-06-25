@@ -1,39 +1,67 @@
-name: CI Pipeline for Qt with QMake
+name: CI/CD
 
-on:
-  push:
-    branches:
-      - main  # Adjust as per your main branch name
-  pull_request:
-    branches:
-      - main  # Adjust as per your main branch name
+on: push
 
 jobs:
+  super-lint:
+    name: Lint code base
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Super-Linter
+        uses: github/super-linter@v4
+        env:
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   build:
-    runs-on: ubuntu-latest  # Choose an appropriate runner based on your needs
+    name: Build Qt Project
+    runs-on: windows-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up Qt environment
-        uses: jurplel/setup-qt@v2
+      - name: Set up Qt
+        uses: jurplel/install-qt-action@v2
         with:
-          qt-version: '5.x'  # Replace with your Qt version (e.g., '5.15.2')
-          qmake-path: 'qmake'  # Ensure 'qmake' is in your PATH
+          version: '6.7.0'
+          host: 'windows'
+          target: 'desktop'
+          arch: 'win64_msvc2019_64'
 
-      - name: Install build dependencies
+      - name: Set up environment variables
         run: |
-          sudo apt-get update
-          sudo apt-get install -y build-essential  # Install necessary build tools
+          echo :C:\Qt\Tools\QtCreator\bin
 
-      - name: Configure and build
+      - name: Build project
         run: |
-          qmake -r  # Run QMake recursively to generate Makefiles
-          make  # Build the project
+          mkdir build
+          cd build
+          qmake qmakewithsounds.pro  # Replace with your actual .pro file name
+          nmake
 
-      - name: Run tests (if applicable)
-        run: |
-          # Add commands here to run your tests, if any
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-artifacts
+          path: build/
+
+  deploy:
+    name: Deploy to Server
+    runs-on: windows-latest
+    needs: build
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: build-artifacts
+          path: build/
 
 
