@@ -9,64 +9,37 @@ on:
       - main
 
 jobs:
-  setup-and-lint:
+  build:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
+    - name: Set up Qt
+      uses: qmcgaw/qt-installer-action@v2
       with:
-        node-version: '16'
+        version: '13.0.0'
+        components: 'qtbase qttools'
+        target-dir: /opt/Qt
 
-    - name: Install dependencies
-      run: npm install
+    - name: Configure and build
+      run: |
+        qmake -v
+        qmake CONFIG+=debug
+        make
 
-    - name: Run Super-Linter
-      uses: github/super-linter@v5
-      env:
-        DEFAULT_BRANCH: main
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Run unit tests
+      run: ./tests/test_game  # Replace with your actual test command
 
-  build-and-test:
+  deploy:
     runs-on: ubuntu-latest
-    needs: setup-and-lint
+    needs: build
+    if: success()
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+    - name: Deploy to Production
+      run: |
+        echo "Deploying Tic Tac Toe game..."
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'
 
-    - name: Install dependencies
-      run: npm install
-
-    - name: Build the project
-      run: npm run build
-
-    - name: Run tests
-      run: npm test
-
-  security-check:
-    runs-on: ubuntu-latest
-    needs: build-and-test
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Run security checks
-      run: npm audit
