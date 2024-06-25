@@ -1,0 +1,16 @@
+debug/GameManager.o
+debug/ai_or_2.o
+debug/game_or_history.o
+debug/gameai.o
+debug/gamewindow1.o
+debug/main.o
+debug/mainwindow.o
+debug/register_dialog.o
+debug/qrc_res.o
+debug/moc_GameManager.o
+debug/moc_ai_or_2.o
+debug/moc_game_or_history.o
+debug/moc_gameai.o
+debug/moc_gamewindow1.o
+debug/moc_mainwindow.o
+debug/moc_register_dialog.o

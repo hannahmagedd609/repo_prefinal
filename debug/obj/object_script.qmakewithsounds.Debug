@@ -1,0 +1,16 @@
+../../debug/obj/GameManager.o
+../../debug/obj/ai_or_2.o
+../../debug/obj/game_or_history.o
+../../debug/obj/gameai.o
+../../debug/obj/gamewindow1.o
+../../debug/obj/main.o
+../../debug/obj/mainwindow.o
+../../debug/obj/register_dialog.o
+../../debug/obj/qrc_res.o
+../../debug/obj/moc_GameManager.o
+../../debug/obj/moc_ai_or_2.o
+../../debug/obj/moc_game_or_history.o
+../../debug/obj/moc_gameai.o
+../../debug/obj/moc_gamewindow1.o
+../../debug/obj/moc_mainwindow.o
+../../debug/obj/moc_register_dialog.o

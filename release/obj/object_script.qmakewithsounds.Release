@@ -1,0 +1,16 @@
+../../release/obj/GameManager.o
+../../release/obj/ai_or_2.o
+../../release/obj/game_or_history.o
+../../release/obj/gameai.o
+../../release/obj/gamewindow1.o
+../../release/obj/main.o
+../../release/obj/mainwindow.o
+../../release/obj/register_dialog.o
+../../release/obj/qrc_res.o
+../../release/obj/moc_GameManager.o
+../../release/obj/moc_ai_or_2.o
+../../release/obj/moc_game_or_history.o
+../../release/obj/moc_gameai.o
+../../release/obj/moc_gamewindow1.o
+../../release/obj/moc_mainwindow.o
+../../release/obj/moc_register_dialog.o

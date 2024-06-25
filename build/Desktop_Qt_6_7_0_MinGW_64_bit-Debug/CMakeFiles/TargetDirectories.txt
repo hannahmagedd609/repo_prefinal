@@ -1,0 +1,9 @@
+D:/YaRa12/YaRa12/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/YaRa12.dir
+D:/YaRa12/YaRa12/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/edit_cache.dir
+D:/YaRa12/YaRa12/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/rebuild_cache.dir
+D:/YaRa12/YaRa12/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/list_install_components.dir
+D:/YaRa12/YaRa12/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/install.dir
+D:/YaRa12/YaRa12/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/install/local.dir
+D:/YaRa12/YaRa12/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/install/strip.dir
+D:/YaRa12/YaRa12/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/YaRa12_autogen_timestamp_deps.dir
+D:/YaRa12/YaRa12/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/YaRa12_autogen.dir

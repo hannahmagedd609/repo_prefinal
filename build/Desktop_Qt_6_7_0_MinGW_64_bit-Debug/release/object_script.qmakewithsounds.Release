@@ -1,0 +1,16 @@
+release/GameManager.o
+release/ai_or_2.o
+release/game_or_history.o
+release/gameai.o
+release/gamewindow1.o
+release/main.o
+release/mainwindow.o
+release/register_dialog.o
+release/qrc_res.o
+release/moc_GameManager.o
+release/moc_ai_or_2.o
+release/moc_game_or_history.o
+release/moc_gameai.o
+release/moc_gamewindow1.o
+release/moc_mainwindow.o
+release/moc_register_dialog.o
