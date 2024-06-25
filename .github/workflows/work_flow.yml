@@ -1,40 +1,44 @@
-name: Build, Test, and Deploy
+name: CI/CD Pipeline for Qt with QMake
+
 on:
   push:
     branches:
-      - main
+      - main  # Adjust as per your main branch name
+  pull_request:
+    branches:
+      - main  # Adjust as per your main branch name
+
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Choose an appropriate runner based on your needs
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: Set up Qt
-        uses: jurplel/setup-qt@v1
-        with:
-          version: '6.7.1'
+    - name: Set up Qt environment
+      uses: jurplel/setup-qt@v2
+      with:
+        qt-version: '5.x'  # Replace with your Qt version (e.g., '6.7.1')
+        qmake-path: 'qmake'  # Ensure 'qmake' is in your PATH
 
-      - name: Configure and build
-        run: |
-          qmake -makefile
-          make
+    - name: Install build dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential  # Install necessary build tools
 
-      - name: Run tests
-        run: |
-          # Add commands to run tests here
+    - name: Configure and build
+      run: |
+        qmake -r  # Run QMake recursively to generate Makefiles
+        make  # Build the project
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    if: success()
+    - name: Run tests (if applicable)
+      run: |
+        # Add commands here to run your tests, if any
 
-    steps:
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./path/to/deploy
+    - name: Deploy (example: copy binaries)
+      if: success()  # Example condition, adjust as needed
+      run: |
+        # Add deployment steps here, such as copying binaries to a server or packaging for distribution
 
 
